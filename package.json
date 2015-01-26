@@ -16,7 +16,7 @@
         "pagination",
         "page-lister"
     ],
-    "main": "./js/paginatorBox/paginatorBox.jsx",
+    "main": "./js/paginatorBox/reactPaginatorBox.jsx",
     "url": "https://github.com/abaddonGIT/react-paginator-box.git",
     "devDependencies": {
         "gulp": ">=3.8.10",

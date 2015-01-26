@@ -16,7 +16,7 @@
         gulp.src("js/paginatorBox/compile/*.js")
             .pipe(plugins.jshint(".jshintrc"))
             .pipe(plugins.jshint.reporter("default"))
-            .pipe(plugins.concat("paginatorBox.min.js"))
+            .pipe(plugins.concat("reactPaginatorBox.min.js"))
             .pipe(plugins.uglify())
             .pipe(gulp.dest("dist/js/paginatorBox/"));
     });

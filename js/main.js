@@ -2,7 +2,7 @@
  * Created by abaddon on 19.01.2015.
  */
 var React = require('react');
-var PaginatorBox = require('../dist/js/paginatorBox/paginatorBox.min.js');
+var ReactPaginatorBox = require('../dist/js/paginatorBox/reactPaginatorBox.min.js');
 
 var options = {
     items: 200,
@@ -18,9 +18,5 @@ var options2 = {
     reload: false
 };
 
-var one = React.render(<PaginatorBox options={options} />, document.querySelector('#paginatorBox'));
-var two = React.render(<PaginatorBox options={options2} />, document.querySelector('#paginatorBox2'));
-
-
-console.log(one);
-console.log(two);
+React.render(<ReactPaginatorBox options={options} />, document.querySelector('#paginatorBox'));
+React.render(<ReactPaginatorBox options={options2} />, document.querySelector('#paginatorBox2'));

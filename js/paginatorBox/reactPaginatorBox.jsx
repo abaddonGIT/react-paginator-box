@@ -4,7 +4,7 @@
 /*global require, module*/
 var React = require('react');
 
-var PaginatorBox = null;
+var ReactPaginatorBox = null;
 (function (R, M) {
     "use strict";
     var LinkItem = R.createClass({
@@ -41,11 +41,11 @@ var PaginatorBox = null;
         render: function () {
             var param = this.props.param;
             return (
-                React.createElement("li", {className: param.class}, 
-                    React.createElement("a", {href: param.href, "data-angular": param.angular, "data-page": param.page, onClick: this.changePageHandler}, 
-                    param.text
-                    )
-                )
+                <li className={param.class}>
+                    <a href={param.href} data-angular={param.angular} data-page={param.page} onClick={this.changePageHandler}>
+                    {param.text}
+                    </a>
+                </li>
                 );
         }
     });
@@ -53,11 +53,11 @@ var PaginatorBox = null;
         render: function () {
             var param = this.props.param;
             return (
-                React.createElement("li", null, 
-                    React.createElement("span", null, 
-                    param.text
-                    )
-                )
+                <li>
+                    <span>
+                    {param.text}
+                    </span>
+                </li>
                 );
         }
     });
@@ -66,22 +66,22 @@ var PaginatorBox = null;
             var pages = this.props.list.map(function (item) {
                 if (item.link) {
                     return (
-                        React.createElement(LinkItem, {param: item, reload: this.props.reload, changePage: this.props.changePage})
+                        <LinkItem param={item} reload={this.props.reload} changePage={this.props.changePage} />
                         );
                 } else {
                     return (
-                        React.createElement(NotLink, {param: item})
+                        <NotLink param={item} />
                         );
                 }
             }.bind(this));
             return (
-                React.createElement("ul", null, 
-                    pages
-                )
+                <ul>
+                    {pages}
+                </ul>
                 );
         }
     });
-    PaginatorBox = R.createClass({
+    ReactPaginatorBox = R.createClass({
         propTypes: {
             items: R.PropTypes.number,
             limit: R.PropTypes.number,
@@ -279,12 +279,12 @@ var PaginatorBox = null;
         },
         render: function () {
             return (
-                React.createElement("div", {className: "pagination-box"}, 
-                    React.createElement(PaginationList, {reload: this.props.reload, list: this.state.list, changePage: this.changePageHandler})
-                )
+                <div className="pagination-box">
+                    <PaginationList reload={this.props.reload} list={this.state.list} changePage={this.changePageHandler} />
+                </div>
                 );
         }
     });
 }(React, Math));
 
-module.exports = PaginatorBox;
+module.exports = ReactPaginatorBox;

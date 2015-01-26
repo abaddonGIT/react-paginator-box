@@ -1,4 +1,4 @@
-# PaginatorBox #
+# react-paginator-box #
 
 Компонент для постраничной навигации на **Reactjs**
 
@@ -42,7 +42,7 @@
  - **lastText** - текст для ссылки "конец" (default - "Конец")
  
  
-# PaginatorBox #
+# react-paginator-box #
  
 Page pagination component on **Reactjs**
  
