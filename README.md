@@ -11,17 +11,17 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
  - **IE >= 9**
  
 ### Installation ###
-     <script src="http://fb.me/react-0.12.2.min.js"></script>
-     <script src="dist/js/paginatorBox/paginatorBox.min.js"></script>
+     npm install react-paginator-box
  
 ### How to use him? ###
- 
+     var React = require('react');
+     var ReactPaginatorBox = require('ReactPaginatorBox');
      var options = {
          items: 200,
          startPage: 2,
          limit: 20
      };
-     React.render(React.createElement(PaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
+     React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
  
 ### Component parameters ###
  
@@ -53,17 +53,17 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
 - **IE >= 9**
 
 ### Подключение ###
-    <script src="http://fb.me/react-0.12.2.min.js"></script>
-    <script src="dist/js/paginatorBox/paginatorBox.min.js"></script>
+    npm install react-paginator-box
 
 ### Как использовать? ###
-
+    var React = require('react');
+    var ReactPaginatorBox = require('ReactPaginatorBox');
     var options = {
         items: 200,
         startPage: 2,
         limit: 20
     };
-    React.render(React.createElement(PaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
+    React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
 
 
 ### Параметры ###
