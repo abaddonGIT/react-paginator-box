@@ -1,6 +1,6 @@
 # react-paginator-box #
 
-Компонент для постраничной навигации на **Reactjs**
+Компонент для постраничной навигации на **Reactjs**  ([Демо](http://abaddongit.github.io/react-paginator-box/))
 
 ### Поддержка ###
 
@@ -44,7 +44,7 @@
  
 # react-paginator-box #
  
-Page pagination component on **Reactjs**
+Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/react-paginator-box/))
  
 ### Browsers support ###
  
