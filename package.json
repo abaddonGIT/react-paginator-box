@@ -1,6 +1,6 @@
 {
     "name": "react-paginator-box",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "ReactJS component that create a pagination.",
     "author": {
         "name": "Goryachkin Michael (Abaddon65)",
@@ -16,8 +16,12 @@
         "pagination",
         "page-lister"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/abaddonGIT/react-paginator-box.git"
+    },
+    "homepage": "https://github.com/abaddonGIT/react-paginator-box.git",
     "main": "./js/paginatorBox/reactPaginatorBox.jsx",
-    "url": "https://github.com/abaddonGIT/react-paginator-box.git",
     "devDependencies": {
         "gulp": ">=3.8.10",
         "gulp-concat": ">= 0.10",
