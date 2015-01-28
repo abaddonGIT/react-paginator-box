@@ -21,7 +21,7 @@ var options2 = {
 
 var paginate1 = React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
 var paginate2 = React.render(React.createElement(ReactPaginatorBox, {options: options2}), document.querySelector('#paginatorBox2'));
- 
+
 paginate1.on("onChange", function () {
     console.log("first");
 });
