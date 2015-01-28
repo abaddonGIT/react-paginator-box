@@ -3,7 +3,7 @@
  * Created by abaddon on 19.01.2015.
  */
 var React = require('react');
-var ReactPaginatorBox = require('../dist/js/paginatorBox/reactPaginatorBox.min.js');
+var ReactPaginatorBox = require('./paginatorBox/reactPaginatorBox.jsx');
 
 var options = {
     items: 200,
@@ -21,18 +21,319 @@ var options2 = {
 
 var paginate1 = React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
 var paginate2 = React.render(React.createElement(ReactPaginatorBox, {options: options2}), document.querySelector('#paginatorBox2'));
-
+ 
 paginate1.on("onChange", function () {
-    console.log(this);
+    console.log("first");
 });
 
 paginate2.on("onChange", function () {
-    console.log(this);
+    console.log("second");
 });
 
 
-},{"../dist/js/paginatorBox/reactPaginatorBox.min.js":2,"react":149}],2:[function(require,module,exports){
-var React=require("react"),ReactPaginatorBox=null;!function(t,e){"use strict";var s=t.createClass({hasClass:function(t,e){if(t.classList)return t.classList.contains(e);var s=new RegExp("(^|\\s)"+e+"(\\s|$)","g");return s.test(t.className)?!0:!1},changePageHandler:function(t){var e=t.target.parentNode,s=t.target.getAttribute("data-angular");this.props.reload?this.props.changePage(parseInt(t.target.getAttribute("data-page"))):(t.preventDefault(),t.stopPropagation(),"true"===s?this.hasClass(e,"disabled")||this.props.changePage(parseInt(t.target.getAttribute("data-page"))):this.hasClass(e,"active")||this.props.changePage(parseInt(t.target.getAttribute("data-page"))))},render:function(){var t=this.props.param;return React.createElement("li",{className:t["class"]},React.createElement("a",{href:t.href,"data-angular":t.angular,"data-page":t.page,onClick:this.changePageHandler},t.text))}}),r=t.createClass({render:function(){var t=this.props.param;return React.createElement("li",null,React.createElement("span",null,t.text))}}),a=t.createClass({render:function(){var t=this.props.list.map(function(t){return t.link?React.createElement(s,{param:t,reload:this.props.reload,changePage:this.props.changePage}):React.createElement(r,{param:t})}.bind(this));return React.createElement("ul",null,t)}});ReactPaginatorBox=t.createClass({propTypes:{items:t.PropTypes.number,limit:t.PropTypes.number,display:t.PropTypes.number,startPage:t.PropTypes.number,nextText:t.PropTypes.string,prevText:t.PropTypes.string,handlers:t.PropTypes.array},getInitialState:function(){return{list:[]}},getInterval:function(){return{start:e.ceil(this.props.currentPage>this.props.halfDisplay?e.max(e.min(this.props.currentPage-this.props.halfDisplay,this.props.pageCount-this.props.display),0):0),end:e.ceil(this.props.currentPage>this.props.halfDisplay?e.min(this.props.currentPage+this.props.halfDisplay,this.props.pageCount):e.min(this.props.display,this.props.pageCount))}},ext:function(t,e){for(var s in e)e.hasOwnProperty(s)&&(t[s]=e[s]);return t},on:function(t,e){this.props.handlers[t]=e},emit:function(t){var e=this.props.handlers[t];e&&e.call(this)},componentWillMount:function(){var t={items:100,reload:!0,hrefPrefix:"?page=",hrefParams:"",startPage:1,end:2,currentPage:0,angularLink:!0,edgeLinks:!0,nextText:"Next",prevText:"Prev",firstText:"First",lastText:"Last",handlers:[]};Object.defineProperties(t,{display:{get:function(){return this._display},set:function(t){this._display=t,this.halfDisplay=t/2}},limit:{get:function(){return this._limit},set:function(t){this._limit=t,this.pageCount=e.ceil(this.items/t)}}}),this.props=this.ext(t,this.props.options),this.props.limit?"":this.props.limit=10,!this.props.display||this.props.display<3?this.props.display=5:"",this.props.pageCount>0&&(this.props.currentPage=this.props.startPage-1,this.setState({list:this.buildList()}))},buildList:function(){var t=[],e=this.getInterval();return this.firstLinks(t,e).intervalLink(t,e).lasterLinks(t,e)},addItem:function(t){return t=0>t?0:t<this.props.pageCount?t:this.props.pageCount-1,{"class":t===this.props.currentPage?"active":"",link:!0,page:t,text:t+1,href:this.props.hrefPrefix+(t+1)+this.props.hrefParams}},addAngItem:function(t,e,s,r){var a;switch(s=s||0,t){case"prev":a=this.props.prevText;break;case"first":a=this.props.firstText;break;case"last":a=this.props.lastText;break;case"next":a=this.props.nextText}return{"class":e?"disabled":"",link:!0,page:s,href:this.props.hrefPrefix+(r?s+1:s)+this.props.hrefParams,angular:!0,text:a}},firstLinks:function(t,s){if(this.props.angularLink&&this.generatedPrevLink(t),s.start>0){for(var r=e.min(this.props.end,s.start),a=0;r>a;a++)t.push(this.addItem(a));s.start-this.props.end===1&&t.push(this.addItem(this.props.end)),s.start>this.props.end&&s.start-this.props.end!==1&&t.push({"class":"not-use",link:!1,text:"..."})}return{intervalLink:this.intervalLink}},generatedPrevLink:function(t){0===this.props.currentPage?(this.props.edgeLinks&&t.push(this.addAngItem("first",!0)),t.push(this.addAngItem("prev",!0))):(this.props.edgeLinks&&t.push(this.addAngItem("first",!1,0,!0)),t.push(this.addAngItem("prev",!1,this.props.currentPage-1<0?0:this.props.currentPage-1,!0)))},generatedNextLink:function(t){this.props.currentPage+1===this.props.pageCount?(t.push(this.addAngItem("next",!0)),this.props.edgeLinks&&t.push(this.addAngItem("last",!0))):(t.push(this.addAngItem("next",!1,this.props.currentPage+1<this.props.pageCount?this.props.currentPage+1:this.props.pageCount-1,!0)),this.props.edgeLinks&&t.push(this.addAngItem("last",!1,this.props.pageCount-1,!0)))},intervalLink:function(t,e){for(var s=e.start;s<e.end;s++)t.push(this.addItem(s));return{lasterLinks:this.lasterLinks}},lasterLinks:function(t,s){if(s.end<this.props.pageCount){var r=e.max(this.props.pageCount-this.props.end,s.end);this.props.pageCount-this.props.end>s.end&&this.props.pageCount-this.props.end-s.end!==1&&t.push({"class":"not-use",link:!1,text:"..."}),this.props.pageCount-this.props.end-s.end===1&&t.push(this.addItem(s.end));for(var a=r;a<this.props.pageCount;a++)t.push(this.addItem(a))}return this.props.angularLink&&this.generatedNextLink(t),t},changePageHandler:function(t){setTimeout(function(){t>=0&&t<=this.props.pageCount-1&&(this.props.currentPage=t,this.setState({list:this.buildList()},this.emit("onChange")))}.bind(this),0)},render:function(){return React.createElement("div",{className:"pagination-box"},React.createElement(a,{reload:this.props.reload,list:this.state.list,changePage:this.changePageHandler}))}})}(React,Math),module.exports=ReactPaginatorBox;
+},{"./paginatorBox/reactPaginatorBox.jsx":2,"react":149}],2:[function(require,module,exports){
+/**
+ * Created by abaddon on 08.01.2015.
+ */
+/*global require, module*/
+var React = require('react');
+
+var ReactPaginatorBox = null;
+(function (R, M) {
+    "use strict";
+    var LinkItem = R.createClass({
+        hasClass: function (el, className) {
+            if (el.classList) {
+                return el.classList.contains(className);
+            } else {
+                var reg = new RegExp("(^|\\s)" + className + "(\\s|$)", "g");
+                if (reg.test(el.className)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        changePageHandler: function (e) {
+            var parent = e.target.parentNode, type = e.target.getAttribute("data-angular");
+            if (!this.props.reload) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (type === "true") {
+                    if (!this.hasClass(parent, "disabled")) {
+                        this.props.changePage(parseInt(e.target.getAttribute("data-page")));
+                    }
+                } else {
+                    if (!this.hasClass(parent, "active")) {
+                        this.props.changePage(parseInt(e.target.getAttribute("data-page")));
+                    }
+                }
+            } else {
+                this.props.changePage(parseInt(e.target.getAttribute("data-page")));
+            }
+        },
+        render: function () {
+            var param = this.props.param;
+            return (
+                React.createElement("li", {className: param.class}, 
+                    React.createElement("a", {href: param.href, "data-angular": param.angular, "data-page": param.page, onClick: this.changePageHandler}, 
+                    param.text
+                    )
+                )
+            );
+        }
+    });
+
+    var NotLink = R.createClass({
+        render: function () {
+            var param = this.props.param;
+            return (
+                React.createElement("li", null, 
+                    React.createElement("span", null, 
+                    param.text
+                    )
+                )
+            );
+        }
+    });
+    var PaginationList = R.createClass({
+        render: function () {
+            var pages = this.props.list.map(function (item) {
+                if (item.link) {
+                    return (
+                        React.createElement(LinkItem, {param: item, reload: this.props.reload, changePage: this.props.changePage})
+                    );
+                } else {
+                    return (
+                        React.createElement(NotLink, {param: item})
+                    );
+                }
+            }.bind(this));
+            return (
+                React.createElement("ul", null, 
+                    pages
+                )
+            );
+        }
+    });
+    ReactPaginatorBox = R.createClass({
+        propTypes: {
+            items: R.PropTypes.number,
+            limit: R.PropTypes.number,
+            display: R.PropTypes.number,
+            startPage: R.PropTypes.number,
+            nextText: R.PropTypes.string,
+            prevText: R.PropTypes.string,
+            handlers: R.PropTypes.array
+        },
+        getInitialState: function () {
+            return {
+                list: []
+            };
+        },
+        getInterval: function () {
+            return {
+                start: M.ceil(this.props.currentPage > this.props.halfDisplay ? M.max(M.min(this.props.currentPage - this.props.halfDisplay, this.props.pageCount - this.props.display), 0) : 0),
+                end: M.ceil(this.props.currentPage > this.props.halfDisplay ? M.min(this.props.currentPage + this.props.halfDisplay, this.props.pageCount) : M.min(this.props.display, this.props.pageCount))
+            };
+        },
+        ext: function (one, two) {
+            for (var i in two) {
+                if (two.hasOwnProperty(i)) {
+                    one[i] = two[i];
+                }
+            }
+            return one;
+        },
+        on: function (eventName, cb) {
+            this.props.handlers[eventName] = cb;
+        },
+        emit: function (eventName) {
+            var handler = this.props.handlers[eventName];
+            if (handler) {
+                handler.call(this);
+            }
+        },
+        componentWillMount: function () {
+            var defSetting = {
+                items: 100,
+                reload: true,
+                hrefPrefix: "?page=",
+                hrefParams: "",
+                startPage: 1,
+                end: 2,
+                currentPage: 0,
+                angularLink: true,
+                edgeLinks: true,
+                nextText: "Next",
+                prevText: "Prev",
+                firstText: "First",
+                lastText: "Last",
+                handlers: []
+            };
+
+            Object.defineProperties(defSetting, {
+                display: {
+                    get: function () {
+                        return this._display;
+                    },
+                    set: function (value) {
+                        this._display = value;
+                        this.halfDisplay = value / 2;
+                    }
+                },
+                limit: {
+                    get: function () {
+                        return this._limit;
+                    },
+                    set: function (value) {
+                        this._limit = value;
+                        this.pageCount = M.ceil(this.items / value);
+                    }
+                }
+            });
+            this.props = this.ext(defSetting, this.props.options);
+
+            !this.props.limit ? this.props.limit = 10 : "";
+            (!this.props.display || this.props.display < 3) ? this.props.display = 5 : "";
+
+            if (this.props.pageCount > 0) {
+                this.props.currentPage = this.props.startPage - 1;
+                this.setState({list: this.buildList()});
+            }
+        },
+        buildList: function () {
+            var list = [], interval = this.getInterval();
+            return this.firstLinks(list, interval).intervalLink(list, interval).lasterLinks(list, interval);
+        },
+        addItem: function (page) {
+            page = page < 0 ? 0 : (page < this.props.pageCount ? page : this.props.pageCount - 1);
+            return {
+                class: (page === this.props.currentPage) ? "active" : "",
+                link: true,
+                page: page,
+                text: page + 1,
+                href: this.props.hrefPrefix + (page + 1) + this.props.hrefParams
+            };
+        },
+        addAngItem: function (type, disabled, page, increment) {
+            var text;
+            page = page || 0;
+            switch (type) {
+                case 'prev':
+                    text = this.props.prevText;
+                    break;
+                case 'first':
+                    text = this.props.firstText;
+                    break;
+                case 'last':
+                    text = this.props.lastText;
+                    break;
+                case 'next':
+                    text = this.props.nextText;
+                    break;
+            }
+            return {
+                class: disabled ? "disabled" : "",
+                link: true,
+                page: page,
+                href: this.props.hrefPrefix + (increment ? (page + 1) : page) + this.props.hrefParams,
+                angular: true,
+                text: text
+            };
+        },
+        firstLinks: function (list, interval) {
+            if (this.props.angularLink) {
+                this.generatedPrevLink(list);
+            }
+            if (interval.start > 0) {
+                var end = M.min(this.props.end, interval.start);
+
+                for (var i = 0; i < end; i++) {
+                    list.push(this.addItem(i));
+                }
+                if (interval.start - this.props.end === 1) {
+                    list.push(this.addItem(this.props.end));
+                }
+                if (interval.start > this.props.end && (interval.start - this.props.end !== 1)) {
+                    list.push({class: "not-use", link: false, text: "..."});
+                }
+            }
+            return {
+                intervalLink: this.intervalLink
+            };
+        },
+        generatedPrevLink: function (list) {
+            if (this.props.currentPage === 0) {
+                if (this.props.edgeLinks) {
+                    list.push(this.addAngItem('first', true));
+                }
+                list.push(this.addAngItem('prev', true));
+            } else {
+                if (this.props.edgeLinks) {
+                    list.push(this.addAngItem('first', false, 0, true));
+                }
+                list.push(this.addAngItem('prev', false, (this.props.currentPage - 1 < 0 ? 0 : this.props.currentPage - 1), true));
+            }
+        },
+        generatedNextLink: function (list) {
+            if (this.props.currentPage + 1 === this.props.pageCount) {
+                list.push(this.addAngItem('next', true));
+                if (this.props.edgeLinks) {
+                    list.push(this.addAngItem('last', true));
+                }
+            } else {
+                list.push(this.addAngItem('next', false, (this.props.currentPage + 1 < this.props.pageCount ? this.props.currentPage + 1 : this.props.pageCount - 1), true));
+                if (this.props.edgeLinks) {
+                    list.push(this.addAngItem('last', false, this.props.pageCount - 1, true));
+                }
+            }
+        },
+        intervalLink: function (list, interval) {
+            for (var i = interval.start; i < interval.end; i++) {
+                list.push(this.addItem(i));
+            }
+            return {
+                lasterLinks: this.lasterLinks
+            };
+        },
+        lasterLinks: function (list, interval) {
+            if (interval.end < this.props.pageCount) {
+                var begin = M.max(this.props.pageCount - this.props.end, interval.end);
+                if (this.props.pageCount - this.props.end > interval.end && (this.props.pageCount - this.props.end - interval.end !== 1)) {
+                    list.push({class: "not-use", link: false, text: "..."});
+                }
+                if (this.props.pageCount - this.props.end - interval.end === 1) {
+                    list.push(this.addItem(interval.end));
+                }
+                for (var i = begin; i < this.props.pageCount; i++) {
+                    list.push(this.addItem(i));
+                }
+            }
+            if (this.props.angularLink) {
+                this.generatedNextLink(list);
+            }
+            return list;
+        },
+        changePageHandler: function (page) {
+            setTimeout(function () {
+                if (page >= 0 && page <= this.props.pageCount - 1) {
+                    this.props.currentPage = page;
+                    this.setState({list: this.buildList()}, this.emit("onChange"));
+                }
+            }.bind(this), 0);
+        },
+        render: function () {
+            return (
+                React.createElement("div", {className: "pagination-box"}, 
+                    React.createElement(PaginationList, {reload: this.props.reload, list: this.state.list, changePage: this.changePageHandler})
+                )
+            );
+        }
+    });
+}(React, Math));
+
+module.exports = ReactPaginatorBox;
 
 },{"react":149}],3:[function(require,module,exports){
 // shim for using process in browser
