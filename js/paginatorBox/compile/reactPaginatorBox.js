@@ -46,9 +46,10 @@ var ReactPaginatorBox = null;
                     param.text
                     )
                 )
-                );
+            );
         }
     });
+
     var NotLink = R.createClass({
         render: function () {
             var param = this.props.param;
@@ -58,7 +59,7 @@ var ReactPaginatorBox = null;
                     param.text
                     )
                 )
-                );
+            );
         }
     });
     var PaginationList = R.createClass({
@@ -67,18 +68,18 @@ var ReactPaginatorBox = null;
                 if (item.link) {
                     return (
                         React.createElement(LinkItem, {param: item, reload: this.props.reload, changePage: this.props.changePage})
-                        );
+                    );
                 } else {
                     return (
                         React.createElement(NotLink, {param: item})
-                        );
+                    );
                 }
             }.bind(this));
             return (
                 React.createElement("ul", null, 
                     pages
                 )
-                );
+            );
         }
     });
     ReactPaginatorBox = R.createClass({
@@ -88,7 +89,8 @@ var ReactPaginatorBox = null;
             display: R.PropTypes.number,
             startPage: R.PropTypes.number,
             nextText: R.PropTypes.string,
-            prevText: R.PropTypes.string
+            prevText: R.PropTypes.string,
+            handlers: R.PropTypes.array
         },
         getInitialState: function () {
             return {
@@ -109,6 +111,15 @@ var ReactPaginatorBox = null;
             }
             return one;
         },
+        on: function (eventName, cb) {
+            this.props.handlers[eventName] = cb;
+        },
+        emit: function (eventName) {
+            var handler = this.props.handlers[eventName];
+            if (handler) {
+                handler.call(this);
+            }
+        },
         componentWillMount: function () {
             var defSetting = {
                 items: 100,
@@ -123,7 +134,8 @@ var ReactPaginatorBox = null;
                 nextText: "Next",
                 prevText: "Prev",
                 firstText: "First",
-                lastText: "Last"
+                lastText: "Last",
+                handlers: []
             };
 
             Object.defineProperties(defSetting, {
@@ -273,7 +285,7 @@ var ReactPaginatorBox = null;
             setTimeout(function () {
                 if (page >= 0 && page <= this.props.pageCount - 1) {
                     this.props.currentPage = page;
-                    this.setState({list: this.buildList()});
+                    this.setState({list: this.buildList()}, this.emit("onChange"));
                 }
             }.bind(this), 0);
         },
@@ -282,7 +294,7 @@ var ReactPaginatorBox = null;
                 React.createElement("div", {className: "pagination-box"}, 
                     React.createElement(PaginationList, {reload: this.props.reload, list: this.state.list, changePage: this.changePageHandler})
                 )
-                );
+            );
         }
     });
 }(React, Math));

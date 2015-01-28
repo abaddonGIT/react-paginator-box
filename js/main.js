@@ -18,5 +18,13 @@ var options2 = {
     reload: false
 };
 
-React.render(<ReactPaginatorBox options={options} />, document.querySelector('#paginatorBox'));
-React.render(<ReactPaginatorBox options={options2} />, document.querySelector('#paginatorBox2'));
+var paginate1 = React.render(<ReactPaginatorBox options={options} />, document.querySelector('#paginatorBox'));
+var paginate2 = React.render(<ReactPaginatorBox options={options2} />, document.querySelector('#paginatorBox2'));
+
+paginate1.on("onChange", function () {
+    console.log(this);
+});
+
+paginate2.on("onChange", function () {
+    console.log(this);
+});
