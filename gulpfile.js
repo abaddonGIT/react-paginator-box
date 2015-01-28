@@ -4,28 +4,9 @@
 (function (require) {
     "use strict";
     var gulp = require('gulp'),
-        gulpLoadPlugins = require('gulp-load-plugins'),
         browserify = require('browserify'),
-        source = require('vinyl-source-stream'),
-        plugins = gulpLoadPlugins();
-
-    /*
-     *Оптимизация сериптов
-     */
-    gulp.task("js", function () {
-        gulp.src("js/paginatorBox/compile/*.js")
-            .pipe(plugins.jshint(".jshintrc"))
-            .pipe(plugins.jshint.reporter("default"))
-            .pipe(plugins.concat("reactPaginatorBox.min.js"))
-            .pipe(plugins.uglify())
-            .pipe(gulp.dest("dist/js/paginatorBox/"));
-    });
-
-    gulp.task("react", function () {
-        return gulp.src('js/paginatorBox/*.jsx')
-            .pipe(plugins.react())
-            .pipe(gulp.dest('js/paginatorBox/compile'));
-    });
+        uglify = require('gulp-uglify'),
+        source = require('vinyl-source-stream');
 
     gulp.task("browserify", function () {
         return browserify('./js/main.js')
@@ -34,7 +15,11 @@
             .pipe(gulp.dest('dist/js/'));
     });
 
+    gulp.task("min", function () {
+        return gulp.src('dist/js/app.compile.js').pipe(uglify()).pipe(gulp.dest('dist/js/min'));
+    });
+
     gulp.task("watch", function () {
-        gulp.watch(["js/paginatorBox/*.jsx", "js/main.js"], ['react', 'js', 'browserify']);
+        gulp.watch(["js/paginatorBox/*.jsx", "js/main.js"], ['browserify', 'min']);
     });
 }(require));
