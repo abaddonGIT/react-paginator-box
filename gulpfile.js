@@ -35,6 +35,6 @@
     });
 
     gulp.task("watch", function () {
-        gulp.watch("js/paginatorBox/*.jsx", ['react', 'js', 'browserify']);
+        gulp.watch(["js/paginatorBox/*.jsx", "js/main.js"], ['react', 'js', 'browserify']);
     });
 }(require));

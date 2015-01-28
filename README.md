@@ -21,8 +21,12 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
          startPage: 2,
          limit: 20
      };
-     React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
- 
+     var inst = React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
+
+     inst.on("onChange", function () {
+        console.log(this);
+     });
+
 ### Component parameters ###
  
   - **items** - The total number of elements (default - 100),
@@ -39,6 +43,9 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
   - **prevText** - title at "prev" link (default - "Prev"),
   - **firstText** - title at "first" link (default - "Start"),
   - **lastText** - title at "last" link (default - "End")
+
+### VersionChanges ###
+  - **1.0.3** - Adding two function **on** and **emit** for create events for component. Adding **onChange** trigger.
   
 # react-paginator-box #
 
@@ -63,7 +70,11 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
         startPage: 2,
         limit: 20
     };
-    React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
+    var inst = React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
+
+    inst.on("onChange", function () {
+        console.log(this);
+    });
 
 
 ### Параметры ###
@@ -82,3 +93,6 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
  - **prevText** - текст для ссылки "назад" (default - "Назад"),
  - **firstText** - текст для ссылки "начало" (default - "Начало"),
  - **lastText** - текст для ссылки "конец" (default - "Конец")
+
+### Изменения версии ###
+ - **1.0.3** - Добавлены ф-и **on** и **emit** для взаимодействия с событиями компонента. Добавлен **onChange** триггер.
