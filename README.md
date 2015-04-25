@@ -47,4 +47,4 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
 
 ### VersionChanges ###
   - **1.0.3** - Adding two function **on** and **emit** for create events for component. Adding **onChange** trigger.
-  - **1.0.7** - Now you can set individual props. Webpack support.
+  - **1.0.8** - Now you can set individual props. Webpack support.

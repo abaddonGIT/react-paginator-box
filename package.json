@@ -1,6 +1,6 @@
 {
   "name": "react-paginator-box",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "ReactJS component that create a pagination.",
   "author": {
     "name": "Goryachkin Michael (Abaddon65)",
@@ -31,6 +31,6 @@
   "scripts": {
     "watch": "./node_modules/.bin/webpack-dev-server --hot",
     "build": "webpack --config webpack.config.production.js",
-    "publish": "webpack --config webpack.config.publish.js"
+    "pub": "webpack --config webpack.config.publish.js"
   }
 }
