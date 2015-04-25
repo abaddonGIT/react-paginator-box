@@ -2,14 +2,15 @@
  * Created by abaddon on 19.01.2015.
  */
 var React = require('react');
-var ReactPaginatorBox = require('./paginatorBox/reactPaginatorBox.jsx');
+var ReactPaginatorBox = require('../src/index.jsx');
 
 var options = {
-    items: 200,
+    //items: 200,
     startPage: 2,
     limit: 10,
     reload: false
 };
+
 
 var options2 = {
     items: 100,
@@ -18,8 +19,8 @@ var options2 = {
     reload: false
 };
 
-var paginate1 = React.render(<ReactPaginatorBox options={options} />, document.querySelector('#paginatorBox'));
-var paginate2 = React.render(<ReactPaginatorBox options={options2} />, document.querySelector('#paginatorBox2'));
+var paginate1 = React.render(React.createElement(ReactPaginatorBox, {options: options}), document.querySelector('#paginatorBox'));
+var paginate2 = React.render(React.createElement(ReactPaginatorBox, {options: options2}), document.querySelector('#paginatorBox2'));
 
 paginate1.on("onChange", function () {
     console.log("first");

@@ -1,41 +1,36 @@
 {
-    "name": "react-paginator-box",
-    "version": "1.0.3",
-    "description": "ReactJS component that create a pagination.",
-    "author": {
-        "name": "Goryachkin Michael (Abaddon65)",
-        "email": "abaddongit@gmail.com"
-    },
-    "license": "MIT",
-    "dependencies": {
-        "react": ">=0.12.2",
-        "reactify": ">=1.0.0"
-    },
-    "keywords": [
-        "react-component",
-        "pagination",
-        "page-lister"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/abaddonGIT/react-paginator-box.git"
-    },
-    "homepage": "https://github.com/abaddonGIT/react-paginator-box.git",
-    "main": "./js/paginatorBox/reactPaginatorBox.jsx",
-    "devDependencies": {
-        "gulp": ">=3.8.10",
-        "gulp-react": ">=2.0.0",
-        "gulp-uglify": ">=1.0.2",
-        "browserify": "latest",
-        "vinyl-source-stream": ">=1.0.0",
-        "jasmine-core": ">=2.1.3",
-        "karma": ">=0.12.28",
-        "karma-chrome-launcher": ">=0.1.7",
-        "karma-jasmine": ">=0.3.3"
-    },
-    "browserify": {
-        "transform": [
-            "reactify"
-        ]
-    }
+  "name": "react-paginator-box",
+  "version": "1.0.7",
+  "description": "ReactJS component that create a pagination.",
+  "author": {
+    "name": "Goryachkin Michael (Abaddon65)",
+    "email": "abaddongit@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": ">=0.12.2",
+    "reactify": ">=1.0.0"
+  },
+  "keywords": [
+    "react-component",
+    "pagination",
+    "page-lister"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abaddonGIT/react-paginator-box.git"
+  },
+  "homepage": "https://github.com/abaddonGIT/react-paginator-box.git",
+  "main": "dist/index.js",
+  "devDependencies": {
+    "jsx-loader": ">=0.12.2",
+    "webpack": "^1.4.15",
+    "react-hot-loader": "^1.1.1",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "scripts": {
+    "watch": "./node_modules/.bin/webpack-dev-server --hot",
+    "build": "webpack --config webpack.config.production.js",
+    "publish": "webpack --config webpack.config.publish.js"
+  }
 }
