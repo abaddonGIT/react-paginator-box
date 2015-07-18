@@ -8,16 +8,21 @@ module.exports = {
     entry: [
         "webpack-dev-server/client?http://localhost:8080",
         'webpack/hot/dev-server',
-        './examples/index'
+        './src/js/app'
     ],
     devServer: {
-        contentBase: './examples/'
+        contentBase: './src/'
     },
-    devtool: "eval",
+    devtool: 'source-map',
     debug: true,
     output: {
-        path: path.join(__dirname, 'examples'),
-        filename: 'bundle.js'
+        path: path.join(__dirname, 'src/dist'),
+        publicPath: '/dist',
+        filename: 'bundle.js',
+        chunkFilename: '[chunkhash].js',
+        sourceMapFilename: 'debugging/[file].map',
+        hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
+        hotUpdateMainFilename: 'hot/[hash].hot-update.json'
     },
     resolveLoader: {
         modulesDirectories: ['node_modules']
@@ -28,12 +33,14 @@ module.exports = {
         new webpack.IgnorePlugin(/un~$/)
     ],
     resolve: {
+        modulesDirectories: ['node_modules'],
         extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [
-            { test: /\.css$/, loaders: ['style', 'css']},
-            { test: /\.jsx$/, loaders: ['react-hot', 'jsx-loader']}
+            {test: /\.js$/, exclude: [/node_modules/], loader: 'babel-loader?optional=runtime'},
+            {test: /\.jsx$/, exclude: [/node_modules/], loaders: ['react-hot', 'babel-loader?optional=runtime']},
+            {test: /\.css$/, loader: 'style-loader!css-loader'}
         ]
     }
 };

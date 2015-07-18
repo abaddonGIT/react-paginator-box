@@ -1,16 +1,18 @@
 {
   "name": "react-paginator-box",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "ReactJS component that create a pagination.",
+  "main": "src/js/index.jsx",
   "author": {
     "name": "Goryachkin Michael (Abaddon65)",
     "email": "abaddongit@gmail.com"
   },
-  "license": "MIT",
-  "dependencies": {
-    "react": ">=0.12.2",
-    "reactify": ">=1.0.0"
+  "scripts": {
+    "watch": "./node_modules/.bin/webpack-dev-server",
+    "dist": "webpack --config webpack.config.dist.js",
+    "example": "webpack --config webpack.config.example.js"
   },
+  "license": "MIT",
   "keywords": [
     "react-component",
     "pagination",
@@ -20,17 +22,31 @@
     "type": "git",
     "url": "https://github.com/abaddonGIT/react-paginator-box.git"
   },
+  "bugs": {
+    "url": "https://github.com/abaddonGIT/react-paginator-box/issues"
+  },
   "homepage": "https://github.com/abaddonGIT/react-paginator-box.git",
-  "main": "dist/index.js",
-  "devDependencies": {
-    "jsx-loader": ">=0.12.2",
-    "webpack": "^1.4.15",
+  "dependencies": {
+    "babel-core": "5.2.9",
+    "babel-loader": "5.0.0",
+    "babel-runtime": "5.2.9",
+    "exports-loader": "0.6.2",
+    "imports-loader": "0.6.3",
+    "jsx-loader": "0.13.2",
+    "less": "2.2.0",
+    "less-loader": "2.0.0",
+    "react": "latest",
+    "react-hot-loader": "1.2.6",
+    "react-router": "0.13.3",
     "react-hot-loader": "^1.1.1",
     "webpack-dev-server": "^1.7.0"
   },
-  "scripts": {
-    "watch": "./node_modules/.bin/webpack-dev-server --hot",
-    "build": "webpack --config webpack.config.production.js",
-    "pub": "webpack --config webpack.config.publish.js"
+  "devDependencies": {
+    "babelify": "latest",
+    "object-assign": "latest",
+    "classie": "latest",
+    "babel-eslint": "^3.0.1",
+    "eslint": "^0.22.0",
+    "eslint-plugin-react": "^2.2.0"
   }
 }
