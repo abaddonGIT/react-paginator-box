@@ -2,7 +2,7 @@
  * Created by abaddon on 19.01.2015.
  */
 import React from 'react';
-import PaginationBox from './index.jsx';
+import PaginationBox from './index.js';
 
 
 var options = {

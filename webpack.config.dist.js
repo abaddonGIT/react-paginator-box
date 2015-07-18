@@ -6,20 +6,19 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: [
-        './src/js/index.jsx'
+        './src/js/index.js'
     ],
     devtool: 'source-map',
     debug: true,
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'index.min.js'
     },
     resolveLoader: {
         modulesDirectories: ['node_modules']
     },
     plugins: [
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.IgnorePlugin(/un~$/)
     ],
