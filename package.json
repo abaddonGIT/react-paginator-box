@@ -27,6 +27,12 @@
   },
   "homepage": "https://github.com/abaddonGIT/react-paginator-box.git",
   "dependencies": {
+    "object-assign": "latest",
+    "classie": "latest",
+    "babelify": "latest",
+    "react": "latest"
+  },
+  "devDependencies": {
     "babel-core": "5.2.9",
     "babel-loader": "5.0.0",
     "babel-runtime": "5.2.9",
@@ -35,16 +41,10 @@
     "jsx-loader": "0.13.2",
     "less": "2.2.0",
     "less-loader": "2.0.0",
-    "react": "latest",
     "react-hot-loader": "1.2.6",
     "react-router": "0.13.3",
     "react-hot-loader": "^1.1.1",
-    "webpack-dev-server": "^1.7.0"
-  },
-  "devDependencies": {
-    "babelify": "latest",
-    "object-assign": "latest",
-    "classie": "latest",
+    "webpack-dev-server": "^1.7.0",
     "babel-eslint": "^3.0.1",
     "eslint": "^0.22.0",
     "eslint-plugin-react": "^2.2.0"
