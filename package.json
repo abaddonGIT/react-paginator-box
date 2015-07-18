@@ -1,6 +1,6 @@
 {
   "name": "react-paginator-box",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ReactJS component that create a pagination.",
   "main": "src/js/index.jsx",
   "author": {
@@ -41,9 +41,8 @@
     "jsx-loader": "0.13.2",
     "less": "2.2.0",
     "less-loader": "2.0.0",
-    "react-hot-loader": "1.2.6",
-    "react-router": "0.13.3",
     "react-hot-loader": "^1.1.1",
+    "react-router": "0.13.3",
     "webpack-dev-server": "^1.7.0",
     "babel-eslint": "^3.0.1",
     "eslint": "^0.22.0",
