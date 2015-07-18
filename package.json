@@ -2,7 +2,7 @@
   "name": "react-paginator-box",
   "version": "1.1.1",
   "description": "ReactJS component that create a pagination.",
-  "main": "src/js/index.jsx",
+  "main": "dist/bundle.js",
   "author": {
     "name": "Goryachkin Michael (Abaddon65)",
     "email": "abaddongit@gmail.com"
