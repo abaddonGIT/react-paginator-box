@@ -20,7 +20,7 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
  
 ### How to use him? ###
      import React from 'react';
-     import PaginationBox from './index.jsx';
+     import PaginationBox from 'react-paginator-box';
 
      var options = {
          items: 150,
