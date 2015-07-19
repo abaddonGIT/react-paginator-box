@@ -38,9 +38,13 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
          }
      };
 
+
      class App extends React.Component {
          constructor() {
              super();
+             this.state = {
+                 items: 0
+             }
          }
 
          _selectPage(pag) {
@@ -48,6 +52,10 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
              start = loc[0];
              var href = start + pag.hrefPrefix + pag.realPage;
              history.pushState(null, null, href);
+         }
+
+         componentDidMount() {
+             this.setState({items: 300});
          }
 
 
@@ -59,10 +67,9 @@ Page pagination component on **Reactjs** ([Demo](http://abaddongit.github.io/rea
          render() {
              return (
                  <div className="appWrap">
-                     //With props
-                     <PaginationBox selectHandler={this._selectPage.bind(this)} items="200" display="5" startPage={this._startPage.bind(this)} />
-                     //With options
                      <PaginationBox options={options} />
+                     <PaginationBox items={this.state.items} />
+                     <PaginationBox selectHandler={this._selectPage.bind(this)} items="200" display="5" startPage={this._startPage.bind(this)} />
                  </div>
              );
          }

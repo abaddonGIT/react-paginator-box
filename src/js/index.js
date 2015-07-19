@@ -26,7 +26,7 @@ class PaginationBox extends Component {
      */
     _setConfig() {
         var def = {
-            items: 100,
+            items: null,
             reload: false,
             hrefPrefix: "?page=",
             hrefParams: "",
@@ -38,39 +38,37 @@ class PaginationBox extends Component {
             nextText: "Next",
             prevText: "Prev",
             firstText: "First",
+            halfDisplay: 0,
+            pageCount: 0,
+            limit: 10,
+            display: 5,
             lastText: "Last",
             handlers: []
         };
         assign(def, this.props.options || this.props);
-
-        Object.defineProperties(this, {
-            display: {
-                get: function () {
-                    return this._display;
-                },
-                set: function (value) {
-                    this._display = value;
-                    this.halfDisplay = value / 2;
-                }
-            },
-            limit: {
-                get: function () {
-                    return this._limit;
-                },
-                set: function (value) {
-                    this._limit = value;
-                    this.pageCount = Math.ceil(this.items / value);
-                }
-            }
-        });
         assign(this, def);
-        !this.limit ? this.limit = 10 : "";
+
+        this._run(1);
+    }
+
+    _run(mount) {
+        var list;
+        assign(this, this.props.options || this.props);
+
+        this.pageCount = Math.ceil(this.items / this.limit);
+        this.halfDisplay = this.display / 2;
+
         (!this.display || this.display < 3) ? this.display = 5 : "";
 
         if (this.pageCount > 0) {
-            this.currentPage = (typeof this.startPage !== "function") ? this.startPage - 1 : this.startPage() - 1;
-            this.setState({list: this._buildList()});
+            if (mount) {
+                this.currentPage = (typeof this.startPage !== "function") ? this.startPage - 1 : this.startPage() - 1;
+            }
+            list = this._buildList();
+        } else {
+            list = [];
         }
+        return list;
     }
 
     /**
@@ -274,11 +272,12 @@ class PaginationBox extends Component {
         }.bind(this), 0);
     }
 
-
     render() {
+        var list = this._run();
+
         return (
             <div className="pagination-box">
-                <List reload={this.reload} list={this.state.list} changePage={this._changePageHandler.bind(this)} />
+                <List reload={this.reload} list={list} changePage={this._changePageHandler.bind(this)} />
             </div>
         );
     }
