@@ -8,29 +8,26 @@ module.exports = {
     entry: [
         './src/js/index.js'
     ],
-    devtool: 'source-map',
-    debug: true,
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'index.min.js'
+        filename: './dist/index.js',
+        sourceMapFilename: './dist/index.map',
+        libraryTarget: 'umd',
+        library: 'PaginationBox'
     },
-    resolveLoader: {
-        modulesDirectories: ['node_modules']
-    },
+    externals: [{
+        react: {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        }
+    }],
     plugins: [
-        new webpack.optimize.DedupePlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.IgnorePlugin(/un~$/)
+        new webpack.optimize.UglifyJsPlugin()
     ],
-    resolve: {
-        modulesDirectories: ['node_modules'],
-        extensions: ['', '.js', '.jsx']
-    },
     module: {
         loaders: [
-            {test: /\.js$/, exclude: [/node_modules/], loader: 'babel-loader?optional=runtime'},
-            {test: /\.jsx$/, exclude: [/node_modules/], loaders: ['react-hot', 'babel-loader?optional=runtime']},
-            {test: /\.css$/, loader: 'style-loader!css-loader'}
+            {test: /\.js$/, exclude: [/node_modules/], loader: 'babel-loader'}
         ]
     }
 };

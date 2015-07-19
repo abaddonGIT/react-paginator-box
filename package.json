@@ -2,7 +2,7 @@
   "name": "react-paginator-box",
   "version": "1.1.4",
   "description": "ReactJS component that create a pagination.",
-  "main": "src/js/index.js",
+  "main": "dist/index.js",
   "author": {
     "name": "Goryachkin Michael (Abaddon65)",
     "email": "abaddongit@gmail.com"
@@ -29,8 +29,6 @@
   "dependencies": {
     "object-assign": "latest",
     "classie": "latest",
-    "babelify": "latest",
-    "browserify": "latest",
     "react": "latest"
   },
   "devDependencies": {
@@ -48,16 +46,5 @@
     "babel-eslint": "^3.0.1",
     "eslint": "^0.22.0",
     "eslint-plugin-react": "^2.2.0"
-  },
-  "browserify": {
-    "extensions": [
-      ".js",
-      ".json",
-      ".es6"
-    ],
-    "debug": true,
-    "transform": [
-      "babelify"
-    ]
   }
 }

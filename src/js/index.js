@@ -3,11 +3,12 @@
  */
 /*global window, document, console*/
 "use strict";
-import React from 'react';
+import React, {Component} from 'react';
 import assign from 'object-assign';
-import List from './parts/List.react.jsx';
+import List from './parts/List.react';
 
-class PaginationBox extends React.Component {
+export default
+class PaginationBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -298,5 +299,3 @@ PaginationBox.propsTypes = {
     selectHandler: React.PropTypes.func,
     startPageHandler: React.PropTypes.func
 };
-
-export default PaginationBox;

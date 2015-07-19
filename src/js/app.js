@@ -4,7 +4,6 @@
 import React from 'react';
 import PaginationBox from './index.js';
 
-
 var options = {
     items: 150,
     startPage: function () {
@@ -20,6 +19,8 @@ var options = {
         history.pushState(null, null, href);
     }
 };
+
+
 
 class App extends React.Component {
     constructor() {

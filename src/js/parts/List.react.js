@@ -3,11 +3,11 @@
  */
 /*global window, document, console*/
 "use strict";
-import React from 'react/addons';
+import React, {Component} from 'react';
 import classie from 'classie';
 
 export default
-class List extends React.Component {
+class List extends Component {
     constructor() {
         super();
     }
