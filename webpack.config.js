@@ -27,6 +27,9 @@ module.exports = {
     resolveLoader: {
         modulesDirectories: ['node_modules']
     },
+    externals: {
+        'react-widgets': 'react-widgets'
+    },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),

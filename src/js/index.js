@@ -7,7 +7,6 @@ import React from 'react';
 import assign from 'object-assign';
 import List from './parts/List.react.jsx';
 
-export default
 class PaginationBox extends React.Component {
     constructor(props) {
         super(props);
@@ -299,3 +298,5 @@ PaginationBox.propsTypes = {
     selectHandler: React.PropTypes.func,
     startPageHandler: React.PropTypes.func
 };
+
+export default PaginationBox;
