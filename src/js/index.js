@@ -48,10 +48,12 @@ class PaginationBox extends Component {
         assign(def, this.props.options || this.props);
         assign(this, def);
 
-        this._run(1);
+        this.startPageLock = false;
+
+        this._run();
     }
 
-    _run(mount) {
+    _run() {
         var list;
         assign(this, this.props.options || this.props);
 
@@ -61,7 +63,8 @@ class PaginationBox extends Component {
         (!this.display || this.display < 3) ? this.display = 5 : "";
 
         if (this.pageCount > 0) {
-            if (mount) {
+
+            if(!this.startPageLock) {
                 this.currentPage = (typeof this.startPage !== "function") ? this.startPage - 1 : this.startPage() - 1;
             }
             list = this._buildList();
@@ -265,6 +268,7 @@ class PaginationBox extends Component {
         setTimeout(function () {
             if (page >= 0 && page <= this.pageCount - 1) {
                 this.currentPage = page;
+                this.startPageLock = true;
                 this.setState({list: this._buildList()});
                 this.realPage = this.currentPage + 1 < this.pageCount ? this.currentPage + 1 : this.pageCount;
                 this.selectHandler(this);
